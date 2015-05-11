@@ -2,7 +2,7 @@
 
 namespace FractalLibrary
 {
-	public class CircleInversionFractal : BaseFractal
+	public class CircleInversionFractal : IteratingFractal
 	{
 		private class Circle
 		{
@@ -17,7 +17,7 @@ namespace FractalLibrary
 		private int mNumberOfMainCircles = 3;
 		private float mViewportExtents = 1f;
 
-		protected FractalVector2 mInitialPoint = new FractalVector2(-5f, -5f);
+		private float mStepValue = 0.01f;
 
 		private Circle[] mMainCircles;
 
@@ -26,10 +26,9 @@ namespace FractalLibrary
 			mRandom = new Random (System.DateTime.Now.Millisecond);
 		}
 
-		public void SetInitialIterationPoint(float x, float y)
+		public void SetStepValue(float value)
 		{
-			mInitialPoint.x = x;
-			mInitialPoint.y = y;
+			mStepValue = value;
 		}
 
 		public CircleInversionFractal(int mainCircleCount)
@@ -75,7 +74,8 @@ namespace FractalLibrary
 				int coordY = (int)(mData.GetUpperBound (1) * (interpolatedPoint.y + mViewportExtents) / (mViewportExtents * 2f));
 				try
 				{
-					mData[coordX,coordY] = 1f;
+					mData[coordX,coordY] += mStepValue;
+					mData[coordX, coordY] = (mData[coordX, coordY] >1f) ? 1f : mData[coordX,coordY];
 				}
 				catch(Exception) {
 					continue;

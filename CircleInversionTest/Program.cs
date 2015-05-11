@@ -13,11 +13,11 @@ namespace CircleInversionTest
 			CircleInversionFractal fractal = new CircleInversionFractal ();
 			fractal.SetDataSize (512, 512);
 			int noOfCircles = random.Next (3, 6);
-			//fractal.Iterations = 100000;
+			fractal.Iterations = 1000000;
 			//fractal.SetInitialIterationPoint(5f,5f);
 			fractal.SetNumberOfCircles (noOfCircles);
 			fractal.RefreshDataSamples ();
-			Color referenceColor = Color.Lavender;
+			Color referenceColor = Color.OrangeRed;
 
 			string currentDirectory = Directory.GetCurrentDirectory ();
 			string exportPath = Path.Combine (currentDirectory, "circle_inversion.png");

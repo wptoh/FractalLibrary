@@ -12,18 +12,6 @@ namespace FractalLibrary
 			}
 		}
 
-		protected FractalVector2 mInitialPoint = new FractalVector2(-5f, -5f);
-
-		public BaseFractal ()
-		{
-		}
-
-		public void SetInitialIterationPoint(float x, float y)
-		{
-			mInitialPoint.x = x;
-			mInitialPoint.y = y;
-		}
-
 		public void SetDataSize(int sizeX, int sizeY)
 		{
 			mData = new float[sizeX, sizeY];
