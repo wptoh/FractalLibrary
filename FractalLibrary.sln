@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FractalLibrary", "FractalLibrary\FractalLibrary.csproj", "{96213A67-425E-40DB-AC3C-C69CFC8ABCF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CircleInversionTest", "CircleInversionTest\CircleInversionTest.csproj", "{D41283E0-A895-4B80-89FC-7D505ED8E4A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MadelbrotExample", "MadelbrotExample\MadelbrotExample.csproj", "{3192EB37-53D2-4478-BD55-E7361C2D282F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3192EB37-53D2-4478-BD55-E7361C2D282F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3192EB37-53D2-4478-BD55-E7361C2D282F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3192EB37-53D2-4478-BD55-E7361C2D282F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3192EB37-53D2-4478-BD55-E7361C2D282F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96213A67-425E-40DB-AC3C-C69CFC8ABCF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96213A67-425E-40DB-AC3C-C69CFC8ABCF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96213A67-425E-40DB-AC3C-C69CFC8ABCF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96213A67-425E-40DB-AC3C-C69CFC8ABCF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D41283E0-A895-4B80-89FC-7D505ED8E4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D41283E0-A895-4B80-89FC-7D505ED8E4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D41283E0-A895-4B80-89FC-7D505ED8E4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D41283E0-A895-4B80-89FC-7D505ED8E4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

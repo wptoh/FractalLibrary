@@ -19,16 +19,19 @@ namespace FractalLibrary
 			mCenter.y = y;
 		}
 
-		private void Iterate()
+		private int Iterate(params FractalComplexNumber[] complexNos)
 		{
-			for (int i = 0; i < Iterations + 1; ++i) {
+			if (mIterator != null) {
+				for (int i = 0; i < Iterations + 1; ++i) {
 
-				if (mIterator.ReturnValue > -1) {
-					break;
+					if (mIterator.ReturnValue > -1) {
+						break;
+					}
+					mIterator.Iterate (complexNos);
 				}
-				mIterator.Iterate ();
+				return mIterator.ReturnValue;
 			}
-			
+			return 0;
 		}
 
 		public override void RefreshDataSamples ()
@@ -36,7 +39,13 @@ namespace FractalLibrary
 			float scaleToUse = mScale / (mData.GetUpperBound (0) + 1);
 			for (int y = 0; y <= mData.GetUpperBound (1); ++y) {
 				for (int x = 0; x <= mData.GetUpperBound (0); ++x) {
-					
+					FractalComplexNumber complexPoint = new FractalComplexNumber (x * scaleToUse - mCenter.x, y * scaleToUse - mCenter.y);
+					int iterated = Iterate (new FractalComplexNumber (mInitialPoint), complexPoint);
+					float value = 1;
+					if (iterated > -1) {
+						value = (float)iterated / Iterations;
+					} 
+					mData [x, y] = value;
 				}
 			}
 			//throw new NotImplementedException ();
@@ -46,7 +55,7 @@ namespace FractalLibrary
 	public abstract class MandelbrotIterator
 	{
 		public int ReturnValue = -1;
-		public abstract void Iterate(params FractalVector2[] vectors);
+		public abstract void Iterate(params object[] arguments);
 	}
 }
 

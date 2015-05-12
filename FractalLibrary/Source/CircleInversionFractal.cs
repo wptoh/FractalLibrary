@@ -11,8 +11,6 @@ namespace FractalLibrary
 		}
 
 		private Random mRandom;
-
-		public int Iterations = 100000;
 			
 		private int mNumberOfMainCircles = 3;
 		private float mViewportExtents = 1f;

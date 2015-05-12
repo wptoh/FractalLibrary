@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D41283E0-A895-4B80-89FC-7D505ED8E4A1}</ProjectGuid>
+    <ProjectGuid>{3192EB37-53D2-4478-BD55-E7361C2D282F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>CircleInversionTest</RootNamespace>
-    <AssemblyName>CircleInversionTest</AssemblyName>
+    <RootNamespace>MadelbrotExample</RootNamespace>
+    <AssemblyName>MadelbrotExample</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

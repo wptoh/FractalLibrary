@@ -19,6 +19,12 @@ namespace FractalLibrary
 			this.y = v.y;
 		}
 
+		public FractalVector2(FractalComplexNumber v)
+		{
+			this.x = v.Real;
+			this.y = v.Imaginary;
+		}
+
 		public static FractalVector2 operator +(FractalVector2 v1, FractalVector2 v2)
 		{
 			return new FractalVector2 (v1.x + v2.x, v1.y + v2.y);
