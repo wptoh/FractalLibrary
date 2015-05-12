@@ -56,6 +56,14 @@ namespace FractalLibrary
 		{
 			return new FractalComplexNumber(v.Real / f, v.Imaginary / f);
 		}
+
+		public float Absolute
+		{
+			get
+			{
+				return (float)(Math.Sqrt (Real * Real + Imaginary * Imaginary));
+			}
+		}
 	}
 }
 

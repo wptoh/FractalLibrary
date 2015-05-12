@@ -11,7 +11,7 @@ namespace CircleInversionTest
 		{
 			Random random = new Random (System.DateTime.Now.Millisecond);
 			CircleInversionFractal fractal = new CircleInversionFractal ();
-			fractal.SetDataSize (512, 512);
+			fractal.SetDataSize (2048, 2048);
 			int noOfCircles = random.Next (3, 6);
 			fractal.Iterations = 1000000;
 			//fractal.SetInitialIterationPoint(5f,5f);
@@ -21,7 +21,7 @@ namespace CircleInversionTest
 
 			string currentDirectory = Directory.GetCurrentDirectory ();
 			string exportPath = Path.Combine (currentDirectory, "circle_inversion.png");
-			Bitmap bitmap = new Bitmap (512, 512);
+			Bitmap bitmap = new Bitmap (2048, 2048);
 			for (int y = 0; y < bitmap.Height; ++y) {
 				for (int x = 0; x < bitmap.Width; ++x) {
 					Color colorToSet = Color.FromArgb ((int)(fractal.Data [x, y] * 255), referenceColor);

@@ -13,6 +13,11 @@ namespace FractalLibrary
 			mInitialPoint.x = x;
 			mInitialPoint.y = y;
 		}
+
+		public override void RefreshDataSamples ()
+		{
+			throw new NotImplementedException ();
+		}
 	}
 }
 

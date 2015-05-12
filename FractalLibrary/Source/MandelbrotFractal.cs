@@ -6,7 +6,7 @@ namespace FractalLibrary
 	{
 		private MandelbrotIterator mIterator;
 
-		private FractalVector2 mCenter = new FractalVector2(1.5, 1.5f);
+		private FractalVector2 mCenter = new FractalVector2(1.5f, 1.5f);
 		private float mScale = 3f;
 
 		public MandelbrotFractal ()
@@ -22,13 +22,7 @@ namespace FractalLibrary
 		private int Iterate(params FractalComplexNumber[] complexNos)
 		{
 			if (mIterator != null) {
-				for (int i = 0; i < Iterations + 1; ++i) {
-
-					if (mIterator.ReturnValue > -1) {
-						break;
-					}
-					mIterator.Iterate (complexNos);
-				}
+				mIterator.Iterate (Iterations, complexNos);
 				return mIterator.ReturnValue;
 			}
 			return 0;
@@ -56,6 +50,30 @@ namespace FractalLibrary
 	{
 		public int ReturnValue = -1;
 		public abstract void Iterate(params object[] arguments);
+	}
+
+	public class QuadraticMandelbrotIterator : MandelbrotIterator
+	{
+		public override void Iterate (params object[] arguments)
+		{
+			FractalComplexNumber z = new FractalComplexNumber ();
+			FractalComplexNumber c = (FractalComplexNumber)arguments [1];
+			int iterations = (int)arguments [0];
+			if (arguments.Length > 2)
+			{
+				z = (FractalComplexNumber)arguments [2];
+			}
+			for (int i = 0; i < iterations + 1; ++i)
+			{
+				z = z * z + c;
+				if (z.Absolute > 2f)
+				{
+					ReturnValue = i;
+					break;
+				}
+			}
+			//throw new NotImplementedException ();
+		}
 	}
 }
 
