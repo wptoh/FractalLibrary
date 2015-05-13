@@ -57,6 +57,16 @@ namespace FractalLibrary
 			return new FractalComplexNumber(v.Real / f, v.Imaginary / f);
 		}
 
+		public static bool operator == (FractalComplexNumber v1, FractalComplexNumber v2)
+		{
+			return v1.Real == v2.Real && v1.Imaginary == v2.Imaginary;
+		}
+
+		public static bool operator != (FractalComplexNumber v1, FractalComplexNumber v2)
+		{
+			return v1.Real != v2.Real | v1.Imaginary != v2.Imaginary;
+		}
+
 		public float Absolute
 		{
 			get

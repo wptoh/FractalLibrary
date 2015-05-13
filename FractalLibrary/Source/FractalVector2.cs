@@ -50,9 +50,14 @@ namespace FractalLibrary
 			return new FractalVector2(v.x / f, v.y / f);
 		}
 
-		public static bool FractalVector2 operator ==(FractalVector2 v1, FractalVector2 v2)
+		public static bool operator == (FractalVector2 v1, FractalVector2 v2)
 		{
-			
+			return v1.x == v2.x && v1.y == v2.y;
+		}
+
+		public static bool operator != (FractalVector2 v1, FractalVector2 v2)
+		{
+			return v1.x != v2.x | v1.y != v2.y;
 		}
 
 		public float Magnitude
