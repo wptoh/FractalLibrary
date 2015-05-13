@@ -28,6 +28,11 @@ namespace FractalLibrary
 			return 0;
 		}
 
+		public void SetIterator(MandelbrotIterator it)
+		{
+			mIterator = it;
+		}
+
 		public override void RefreshDataSamples ()
 		{
 			float scaleToUse = mScale / (mData.GetUpperBound (0) + 1);
@@ -50,30 +55,6 @@ namespace FractalLibrary
 	{
 		public int ReturnValue = -1;
 		public abstract void Iterate(params object[] arguments);
-	}
-
-	public class QuadraticMandelbrotIterator : MandelbrotIterator
-	{
-		public override void Iterate (params object[] arguments)
-		{
-			FractalComplexNumber z = new FractalComplexNumber ();
-			FractalComplexNumber c = (FractalComplexNumber)arguments [1];
-			int iterations = (int)arguments [0];
-			if (arguments.Length > 2)
-			{
-				z = (FractalComplexNumber)arguments [2];
-			}
-			for (int i = 0; i < iterations + 1; ++i)
-			{
-				z = z * z + c;
-				if (z.Absolute > 2f)
-				{
-					ReturnValue = i;
-					break;
-				}
-			}
-			//throw new NotImplementedException ();
-		}
 	}
 }
 
