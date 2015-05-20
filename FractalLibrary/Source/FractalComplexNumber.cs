@@ -74,6 +74,11 @@ namespace FractalLibrary
 				return (float)(Math.Sqrt (Real * Real + Imaginary * Imaginary));
 			}
 		}
+
+		public override string ToString ()
+		{
+			return string.Format ("[FractalComplexNumber: Real={0}, Imaginary={1}]", Real, Imaginary);
+		}
 	}
 }
 

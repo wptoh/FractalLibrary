@@ -12,9 +12,10 @@ namespace MadelbrotExample
 			MandelbrotFractal fractal = new MandelbrotFractal ();
 			fractal.Iterations = 100;
 			fractal.SetDataSize (2048, 2048);
+			fractal.SetBounds (-1f, -1f, 1f, 1f);
 			fractal.SetIterator (mandelbrotIterator);
 			fractal.SetInitialIterationPoint (0.285f, 0.01f);
-			fractal.SetCenter (1.5f, 1.5f);
+			fractal.SetCenter (0f, 0f);
 			fractal.RefreshDataSamples ();
 
 			Color referenceColor = Color.Firebrick;

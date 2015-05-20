@@ -71,6 +71,11 @@ namespace FractalLibrary
 		{
 			return new FractalVector2 (x / Magnitude, y / Magnitude);
 		}
+
+		public override string ToString ()
+		{
+			return string.Format ("[FractalVector2: x={0}, y={1}]", x, y);
+		}
 	}
 }
 

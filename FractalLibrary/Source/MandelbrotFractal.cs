@@ -7,6 +7,7 @@ namespace FractalLibrary
 		private MandelbrotIterator mIterator;
 
 		private FractalVector2 mCenter = new FractalVector2(1.5f, 1.5f);
+
 		private float mScale = 3f;
 
 		public MandelbrotFractal ()
@@ -35,10 +36,13 @@ namespace FractalLibrary
 
 		public override void RefreshDataSamples ()
 		{
-			float scaleToUse = mScale / (mData.GetUpperBound (0) + 1);
+			float xStep = (mMaxX - mMinX) / (mData.GetUpperBound (0) + 1);
+			float yStep = (mMaxY - mMinY) / (mData.GetUpperBound (1) + 1);
 			for (int y = 0; y <= mData.GetUpperBound (1); ++y) {
 				for (int x = 0; x <= mData.GetUpperBound (0); ++x) {
-					FractalComplexNumber complexPoint = new FractalComplexNumber (x * scaleToUse - mCenter.x, y * scaleToUse - mCenter.y);
+					FractalComplexNumber complexPoint = new FractalComplexNumber (mMinX + (x * xStep) - mCenter.x, mMinY + (y * yStep) - mCenter.y);
+//					Console.WriteLine (complexPoint.ToString ());
+//					Console.ReadKey ();
 					int iterated = Iterate (new FractalComplexNumber (mInitialPoint), complexPoint);
 					float value = 1;
 					if (iterated > -1) {
