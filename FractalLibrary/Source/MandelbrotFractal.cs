@@ -38,6 +38,9 @@ namespace FractalLibrary
 		{
 			float xStep = (mMaxX - mMinX) / (mData.GetUpperBound (0) + 1);
 			float yStep = (mMaxY - mMinY) / (mData.GetUpperBound (1) + 1);
+			int cores = System.Environment.ProcessorCount;
+			int slice = Math.Floor((float)(mData.GetUpperBound (1) + 1) / cores);
+
 			for (int y = 0; y <= mData.GetUpperBound (1); ++y) {
 				for (int x = 0; x <= mData.GetUpperBound (0); ++x) {
 					FractalComplexNumber complexPoint = new FractalComplexNumber (mMinX + (x * xStep) - mCenter.x, mMinY + (y * yStep) - mCenter.y);
