@@ -41,6 +41,7 @@
     <Compile Include="Source\FractalComplexNumber.cs" />
     <Compile Include="Source\QuadraticMandelbrotIterator.cs" />
     <Compile Include="Source\QuadraticJulietIterator.cs" />
+    <Compile Include="Source\FractalUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

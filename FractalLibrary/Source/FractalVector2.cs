@@ -67,6 +67,13 @@ namespace FractalLibrary
 			}
 		}
 
+		public override bool Equals (object obj)
+		{
+			FractalVector2 target = (FractalVector2)obj;
+
+			return target.x == this.x && target.y == this.y;
+		}
+
 		public FractalVector2 Normalize()
 		{
 			return new FractalVector2 (x / Magnitude, y / Magnitude);

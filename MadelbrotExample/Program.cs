@@ -14,7 +14,7 @@ namespace MadelbrotExample
 			fractal.SetDataSize (2048, 2048);
 			fractal.SetBounds (-1f, -1f, 1f, 1f);
 			fractal.SetIterator (mandelbrotIterator);
-			fractal.SetInitialIterationPoint (0.285f, 0.01f);
+			fractal.SetInitialIterationPoint (0.3f, 0.6f);
 			fractal.SetCenter (0f, 0f);
 			fractal.RefreshDataSamples ();
 
@@ -26,7 +26,7 @@ namespace MadelbrotExample
 					bitmap.SetPixel (x, y, Color.FromArgb ((int)(fractal.Data [x, y] * 255f), referenceColor));
 				}
 			}
-			bitmap.Save ("mandelBrotTest.png", System.Drawing.Imaging.ImageFormat.Png);
+			bitmap.Save ("mandelBrotTest2.png", System.Drawing.Imaging.ImageFormat.Png);
 			//Console.WriteLine ("Hello World!");
 		}
 	}

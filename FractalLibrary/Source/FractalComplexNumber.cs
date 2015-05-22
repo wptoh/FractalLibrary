@@ -75,6 +75,13 @@ namespace FractalLibrary
 			}
 		}
 
+		public override bool Equals (object obj)
+		{
+			FractalComplexNumber target = (FractalComplexNumber)obj;
+
+			return this.Real == target.Real && this.Imaginary == target.Imaginary;
+		}
+
 		public override string ToString ()
 		{
 			return string.Format ("[FractalComplexNumber: Real={0}, Imaginary={1}]", Real, Imaginary);

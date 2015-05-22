@@ -4,6 +4,8 @@ namespace FractalLibrary
 {
 	public class QuadraticMandelbrotIterator : MandelbrotIterator
 	{
+		private const int LIMITRADIUS = 2;
+
 		public override void Iterate (params object[] arguments)
 		{
 			FractalComplexNumber z = new FractalComplexNumber ();
@@ -14,10 +16,10 @@ namespace FractalLibrary
 				z = complexNos [1];
 			}
 			FractalComplexNumber c = complexNos [0];
-			for (int i = 0; i < iterations + 1; ++i)
+			for (int i = 1; i < iterations + 1; ++i)
 			{
 				z = z * z + c;
-				if (z.Absolute > 2f)
+				if (z.Absolute > LIMITRADIUS)
 				{
 					ReturnValue = i;
 					break;
