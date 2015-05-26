@@ -5,7 +5,8 @@ namespace FractalLibrary
 {
 	public class MandelbrotFractal : IteratingFractal
 	{
-		private MandelbrotIterator mIterator;
+		public delegate void MandelbrotFractalIterateFunction(int numberOfIterations, out int returnValue, params FractalComplexNumber[] complexNos);
+		private MandelbrotFractalIterateFunction mCurrentIterateFunction = null;
 
 		private FractalVector2 mCenter = new FractalVector2(1.5f, 1.5f);
 
@@ -17,6 +18,11 @@ namespace FractalLibrary
 		{
 		}
 
+		public void SetIteratingFunction(MandelbrotFractalIterateFunction func)
+		{
+			mCurrentIterateFunction = func;
+		}
+
 		public void SetCenter(float x, float y)
 		{
 			mCenter.x = x;
@@ -25,16 +31,17 @@ namespace FractalLibrary
 
 		private int Iterate(params FractalComplexNumber[] complexNos)
 		{
+			/*
 			if (mIterator != null) {
 				mIterator.Iterate (Iterations, complexNos);
 				return mIterator.ReturnValue;
 			}
-			return 0;
-		}
-
-		public void SetIterator(MandelbrotIterator it)
-		{
-			mIterator = it;
+			*/
+			int returnVal = 0;
+			if (mCurrentIterateFunction != null) {
+				mCurrentIterateFunction (Iterations, out returnVal, complexNos);
+			}
+			return returnVal;
 		}
 
 		public override void RefreshDataSamples ()
@@ -94,7 +101,7 @@ namespace FractalLibrary
 					FractalComplexNumber complexPoint = new FractalComplexNumber (mMinX + (x * xStep) - mCenter.x, mMinY + (y * yStep) - mCenter.y);
 					int iterated = Iterate (new FractalComplexNumber (mInitialPoint), complexPoint);
 					float value = 1;
-					if (iterated > -1) {
+					if (iterated >= 0) {
 						value = (float)iterated / Iterations;
 					} 
 
@@ -105,12 +112,6 @@ namespace FractalLibrary
 			mFinishedThreadCount++;
 			mMutex.ReleaseMutex ();
 		}
-	}
-
-	public abstract class MandelbrotIterator
-	{
-		public int ReturnValue = -1;
-		public abstract void Iterate(params object[] arguments);
 	}
 }
 
