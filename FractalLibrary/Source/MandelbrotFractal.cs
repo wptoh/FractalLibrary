@@ -55,7 +55,7 @@ namespace FractalLibrary
 			int cores = Math.Min (System.Environment.ProcessorCount, mData.GetUpperBound (1) + 1);
 			int slice = (int)(Math.Floor((float)(mData.GetUpperBound (1) + 1) / cores));
 
-			Console.WriteLine ("Number of parallel threads used: {0}", cores.ToString ());
+			//Console.WriteLine ("Number of parallel threads used: {0}", cores.ToString ());
 
 			for (int i = 0; i < cores - 1; ++i) {
 				FractalUtility.ThreadData td = new FractalUtility.ThreadData (slice * i, slice * (i + 1));
@@ -99,7 +99,7 @@ namespace FractalLibrary
 			for (int y = td.start; y < td.end; ++y) {
 				for (int x = 0; x <= mData.GetUpperBound (0); ++x) {
 					FractalComplexNumber complexPoint = new FractalComplexNumber (mMinX + (x * xStep) - mCenter.x, mMinY + (y * yStep) - mCenter.y);
-					int iterated = Iterate (new FractalComplexNumber (mInitialPoint), complexPoint);
+					int iterated = Iterate (complexPoint, new FractalComplexNumber (mInitialPoint));
 					float value = 1;
 					if (iterated >= 0) {
 						value = (float)iterated / Iterations;

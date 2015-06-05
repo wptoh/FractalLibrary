@@ -19,6 +19,22 @@ namespace FractalLibrary
 		{
 			returnVal = -1;
 			FractalComplexNumber z = new FractalComplexNumber ();
+			FractalComplexNumber c = complexNos [0];
+			for (int i = 0; i < iterations + 1; ++i)
+			{
+				z = z * z + c;
+				if (z.Absolute >= 2f)
+				{
+					returnVal = i;
+					break;
+				}
+			}
+		}
+
+		public static void QuadJulietIterate(int iterations, out int returnVal, params FractalComplexNumber[] complexNos)
+		{
+			returnVal = -1;
+			FractalComplexNumber z = new FractalComplexNumber ();
 			if (complexNos.Length > 1)
 			{
 				z = complexNos [1];
@@ -35,23 +51,7 @@ namespace FractalLibrary
 			}
 		}
 
-		public static void QuadJulietIterate(int iterations, out int returnVal, params FractalComplexNumber[] complexNos)
-		{
-			returnVal = -1;
-			FractalComplexNumber z = new FractalComplexNumber ();
-			FractalComplexNumber c = complexNos [0];
-			for (int i = 0; i < iterations + 1; ++i)
-			{
-				z = z * z + c;
-				if (z.Absolute >= 2f)
-				{
-					returnVal = i;
-					break;
-				}
-			}
-		}
-
-		static float[] boxesForGauss(float sigma, int n)  // standard deviation, number of boxes
+		static float[] GenerateBoxForGauss(float sigma, int n)  // standard deviation, number of boxes
 		{
 			var wIdeal = Math.Sqrt((12*sigma*sigma/n)+1);  // Ideal averaging filter width 
 			var wl = Math.Floor(wIdeal);  if(wl%2==0) wl--;
@@ -67,8 +67,8 @@ namespace FractalLibrary
 			return sizes;
 		}
 
-		static void gaussBlur_4 (float[,] scl, float[,]tcl, int w, int h, float r) {
-		    var bxs = boxesForGauss(r, 3);
+		static void GaussBlurData (float[,] scl, float[,]tcl, int w, int h, float r) {
+		    var bxs = GenerateBoxForGauss(r, 3);
 		    boxBlur_4 (scl, tcl, w, h, (bxs[0]-1)/2);
 		    boxBlur_4 (tcl, scl, w, h, (bxs[1]-1)/2);
 		    boxBlur_4 (scl, tcl, w, h, (bxs[2]-1)/2);
