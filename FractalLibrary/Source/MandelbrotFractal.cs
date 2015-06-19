@@ -5,7 +5,7 @@ namespace FractalLibrary
 {
 	public class MandelbrotFractal : IteratingFractal
 	{
-		public delegate void MandelbrotFractalIterateFunction(int numberOfIterations, out int returnValue, params FractalComplexNumber[] complexNos);
+		public delegate void MandelbrotFractalIterateFunction(int numberOfIterations, out float returnValue, params FractalComplexNumber[] complexNos);
 		private MandelbrotFractalIterateFunction mCurrentIterateFunction = null;
 
 		private FractalVector2 mCenter = new FractalVector2(1.5f, 1.5f);
@@ -29,15 +29,9 @@ namespace FractalLibrary
 			mCenter.y = y;
 		}
 
-		private int Iterate(params FractalComplexNumber[] complexNos)
+		private float Iterate(params FractalComplexNumber[] complexNos)
 		{
-			/*
-			if (mIterator != null) {
-				mIterator.Iterate (Iterations, complexNos);
-				return mIterator.ReturnValue;
-			}
-			*/
-			int returnVal = 0;
+			float returnVal = -1f;
 			if (mCurrentIterateFunction != null) {
 				mCurrentIterateFunction (Iterations, out returnVal, complexNos);
 			}
@@ -71,24 +65,6 @@ namespace FractalLibrary
 			while (mFinishedThreadCount < cores) {
 				Thread.Sleep (1);
 			}
-
-
-			/*
-			float xStep = (mMaxX - mMinX) / (mData.GetUpperBound (0) + 1);
-			float yStep = (mMaxY - mMinY) / (mData.GetUpperBound (1) + 1);
-			for (int y = 0; y <= mData.GetUpperBound (1); ++y) {
-				for (int x = 0; x <= mData.GetUpperBound (0); ++x) {
-					FractalComplexNumber complexPoint = new FractalComplexNumber (mMinX + (x * xStep) - mCenter.x, mMinY + (y * yStep) - mCenter.y);
-					int iterated = Iterate (new FractalComplexNumber (mInitialPoint), complexPoint);
-					float value = 1;
-					if (iterated > -1) {
-						value = (float)iterated / Iterations;
-					} 
-					mData [x, y] = value;
-				}
-			}
-			*/
-			//throw new NotImplementedException ();
 		}
 
 		private void ThreadedIterate(System.Object obj)
@@ -99,10 +75,10 @@ namespace FractalLibrary
 			for (int y = td.start; y < td.end; ++y) {
 				for (int x = 0; x <= mData.GetUpperBound (0); ++x) {
 					FractalComplexNumber complexPoint = new FractalComplexNumber (mMinX + (x * xStep) - mCenter.x, mMinY + (y * yStep) - mCenter.y);
-					int iterated = Iterate (complexPoint, new FractalComplexNumber (mInitialPoint));
+					float iterated = Iterate (complexPoint, new FractalComplexNumber (mInitialPoint));
 					float value = 1;
 					if (iterated >= 0) {
-						value = (float)iterated / Iterations;
+						value = iterated;
 					} 
 
 					mData [x, y] = value;

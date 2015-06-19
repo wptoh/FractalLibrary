@@ -15,9 +15,9 @@ namespace FractalLibrary
 			}
 		}
 
-		public static void QuadMandelbrotIterate(int iterations, out int returnVal, params FractalComplexNumber[] complexNos)
+		public static void QuadMandelbrotIterate(int iterations, out float returnVal, params FractalComplexNumber[] complexNos)
 		{
-			returnVal = -1;
+			returnVal = -1f;
 			FractalComplexNumber z = new FractalComplexNumber ();
 			FractalComplexNumber c = complexNos [0];
 			for (int i = 0; i < iterations + 1; ++i)
@@ -25,15 +25,15 @@ namespace FractalLibrary
 				z = z * z + c;
 				if (z.Absolute >= 2f)
 				{
-					returnVal = i;
+					returnVal = (float)i / (float)iterations;
 					break;
 				}
 			}
 		}
 
-		public static void QuadJulietIterate(int iterations, out int returnVal, params FractalComplexNumber[] complexNos)
+		public static void QuadJulietIterate(int iterations, out float returnVal, params FractalComplexNumber[] complexNos)
 		{
-			returnVal = -1;
+			returnVal = -1f;
 			FractalComplexNumber z = new FractalComplexNumber ();
 			if (complexNos.Length > 1)
 			{
@@ -45,7 +45,7 @@ namespace FractalLibrary
 				z = z * z + c;
 				if (z.Absolute >= 2f)
 				{
-					returnVal = i;
+					returnVal = (float)i / (float)iterations;
 					break;
 				}
 			}
