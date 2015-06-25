@@ -52,7 +52,7 @@ namespace FractalLibrary
 		protected virtual void OnResizeDataDone(System.Object obj)
 		{
 			mDataToReturn = (float[,])obj;
-			InvokeDataGeneratedComplete ();
+			base.InvokeDataGeneratedComplete ();
 		}
 
 		public override void RefreshDataSamples ()
