@@ -67,7 +67,9 @@ namespace FractalLibrary
 			return sizes;
 		}
 
-		static void GaussBlurData (float[,] scl, float[,]tcl, int w, int h, float r) {
+		public static void GaussBlurData (float[,] scl, float[,]tcl, float r) {
+			int w = scl.GetUpperBound (0) + 1;
+			int h = scl.GetUpperBound (1) + 1;
 		    var bxs = GenerateBoxForGauss(r, 3);
 		    boxBlur_4 (scl, tcl, w, h, (bxs[0]-1)/2);
 		    boxBlur_4 (tcl, scl, w, h, (bxs[1]-1)/2);
@@ -95,18 +97,21 @@ namespace FractalLibrary
 					val += scl[j, i];
 				for(var j=0  ; j<=r ; j++) 
 				{ 
-					val += scl[ri++, i] - fv;
-					tcl[ti++, i] = (float)Math.Round(val*iarr); 
+					val += scl[j, i] - fv;
+					tcl[j, i] = (float)(val*iarr); 
+					//Console.WriteLine (String.Format ("Data {0}, {1}: {2}", j, i, tcl [j, i]));
 				}
 				for(var j=r+1; j<w-r; j++) 
 				{ 
-					val += scl[ri++, i] - scl[li++, i];
-					tcl[ti++, i] = (float)Math.Round(val*iarr); 
+					val += scl[(int)j, i] - scl[(int)(j-r-1), i];
+					tcl[(int)j, i] = (float)(val*iarr); 
+					//Console.WriteLine (String.Format ("Data {0}, {1}: {2}", j, i, tcl [(int)j, i]));
 				}
 				for(var j=w-r; j<w  ; j++) 
 				{ 
-					val += lv - scl[li++, i];
-					tcl[ti++, i] = (float)Math.Round(val*iarr); 
+					val += lv - scl[(int)(w-j), i];
+					tcl[(int)j, i] = (float)(val*iarr); 
+					//Console.WriteLine (String.Format ("Data {0}, {1}: {2}", j, i, tcl [(int)j, i]));
 				}
 		    }
 		}
@@ -114,6 +119,7 @@ namespace FractalLibrary
 		static void boxBlurT_4 (float[,] scl, float[,] tcl, int w, int h, float r) 
 		{
 		    var iarr = 1 / (r+r+1);
+
 		    for(var i=0; i<w; i++) 
 			{
 				var ti = i;
@@ -126,25 +132,28 @@ namespace FractalLibrary
 					val += scl[ti, j];
 		        for(var j=0  ; j<=r ; j++) 
 				{ 
-					val += scl[i,(int)ri] - fv;
-					tcl[i,j] = (float)Math.Round(val*iarr);
-					ri+=w; 
-					ti+=w; 
+					val += scl[i,j] - fv;
+					tcl[i,j] = (float)(val*iarr);
+					//Console.WriteLine (String.Format ("Data {0}, {1}: {2}", i, j, tcl [i, j]));
+					//ri+=w; 
+					//ti+=w; 
 				}
 		        for(var j=r+1; j<h-r; j++) 
 				{ 
-					val += scl[i, (int)ri] - scl[i, li];
-					tcl[i, ti] = (float)Math.Round(val*iarr);
-					li+=w;
-					ri+=w;
-					ti+=w;
+					val += scl[i, (int)j] - scl[i, (int)(j-r-1)];
+					tcl[i, (int)j] = (float)(val*iarr);
+					//Console.WriteLine (String.Format ("Data {0}, {1}: {2}", i, j, tcl [i, (int)j]));
+					//li+=w;
+					//ri+=w;
+					//ti+=w;
 				}
 		        for(var j=h-r; j<h  ; j++) 
 				{ 
-					val += lv - scl[i, li];
-					tcl[i, ti] = (float)Math.Round(val*iarr);
-					li+=w;
-					ti+=w;
+					val += lv - scl[i, (int)(h-j)];
+					tcl[i, (int)j] = (float)(val*iarr);
+					//Console.WriteLine (String.Format ("Data {0}, {1}: {2}", i, j, tcl [i, (int)j]));
+					//li+=w;
+					//ti+=w;
 				}
 		    }
 		}

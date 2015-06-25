@@ -26,10 +26,10 @@ namespace FractalLibrary
 			get{ return mMinY; }
 		}
 
-		public float[,] Data
+		public virtual float[,] Data
 		{
 			get {
-				return mData;
+				return (float[,])mData.Clone();
 			}
 		}
 
@@ -41,12 +41,21 @@ namespace FractalLibrary
 			mMaxY = maxY;
 		}
 
-		public void SetDataSize(int sizeX, int sizeY)
+		public virtual void SetDataSize(int sizeX, int sizeY)
 		{
 			mData = new float[sizeX, sizeY];
 		}
 
 		public abstract void RefreshDataSamples ();
+
+		public delegate void DataGenerationCompleteHandler();
+		public event DataGenerationCompleteHandler OnDataGenerated;
+		protected virtual void InvokeDataGeneratedComplete()
+		{
+			if (OnDataGenerated != null) {
+				OnDataGenerated ();
+			}
+		}
 	}
 }
 

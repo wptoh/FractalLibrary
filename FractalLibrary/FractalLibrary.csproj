@@ -40,6 +40,7 @@
     <Compile Include="Source\IteratingFractal.cs" />
     <Compile Include="Source\FractalComplexNumber.cs" />
     <Compile Include="Source\FractalUtility.cs" />
+    <Compile Include="Source\ArrayUtility.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
